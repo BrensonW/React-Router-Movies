@@ -5,14 +5,14 @@ import { useParams } from 'react-router-dom'
 export default function Movie(props) {
   const [movie, setMovie] = useState();
 
-  const { itemid } = useParams()
+  const { itemId } = useParams()
 
   useEffect(() => {
-    const id = itemid;
+    const id = itemId;
   
   
   // Change ^^^ that line and use a hook to grab the id from the URL
-  console.log(itemid)
+  console.log(itemId)
   
     axios
       .get(`http://localhost:5000/api/movies/${id}`) // Study this endpoint with Postman
