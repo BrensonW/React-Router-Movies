@@ -15,7 +15,7 @@ function MovieDetails(props) {
   const { title, director, metascore } = props.movie;
     // const { url } =useRouteMatch()
   return (
-    <Link to={`/movies/${props.id}`}>
+    <Link to={`/movies/${props.id}`} style={{ textDecoration: 'none'}}>
     <div className="movie-card">
       <h2>{title}</h2>
       <div className="movie-director">
