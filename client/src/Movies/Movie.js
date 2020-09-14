@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom'
 
 export default function Movie(props) {
   const [movie, setMovie] = useState();
 
-  let id = 1;
-  // Change ^^^ that line and use a hook to grab the id from the URL
+  const { itemid } = useParams()
 
   useEffect(() => {
+    const id = itemid;
+  
+  
+  // Change ^^^ that line and use a hook to grab the id from the URL
+  console.log(itemid)
+  
     axios
       .get(`http://localhost:5000/api/movies/${id}`) // Study this endpoint with Postman
       .then(response => {
+        setMovie(response.data);
         // Study this response with a breakpoint or log statements
         // and set the response data as the 'movie' slice of state
       })
@@ -22,7 +29,10 @@ export default function Movie(props) {
   }, []);
 
   // Uncomment this only when you have moved on to the stretch goals
-  // const saveMovie = evt => { }
+  const saveMovie = evt => { 
+  const addToSavedList = props.addToSavedList
+  addToSavedList(movie)
+  }
 
   if (!movie) {
     return <div>Loading movie information...</div>;
@@ -48,7 +58,7 @@ export default function Movie(props) {
           </div>
         ))}
       </div>
-      <div className="save-button">Save</div>
+      <div onClick={saveMovie} className="save-button">Save</div>
     </div>
   );
 }
